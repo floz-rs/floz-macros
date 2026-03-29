@@ -1,0 +1,16 @@
+[package]
+name = "floz-macros"
+version = "0.1.0"
+edition = "2021"
+description = "Proc macro engine for floz — schema parsing and code generation"
+authors = ["Floz Team"]
+license = "MIT"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+syn = { version = "2", features = ["full", "extra-traits"] }
+quote = "1"
+proc-macro2 = "1"
+floz-macros-core = { path = "../floz-macros-core", package = "floz-macros-core" }
