@@ -1,6 +1,6 @@
 [package]
 name = "floz-macros"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 description = "Proc macro engine for floz — schema parsing and code generation"
 authors = ["Floz Team"]
