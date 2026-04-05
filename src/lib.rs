@@ -18,3 +18,8 @@ pub fn schema(input: TokenStream) -> TokenStream {
 pub fn route(attr: TokenStream, item: TokenStream) -> TokenStream {
     floz_macros_core::route::expand_route(attr.into(), item.into()).into()
 }
+
+#[proc_macro_attribute]
+pub fn task(attr: TokenStream, item: TokenStream) -> TokenStream {
+    floz_macros_core::task::expand_task(attr.into(), item.into()).into()
+}

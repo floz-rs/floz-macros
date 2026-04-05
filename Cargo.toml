@@ -1,10 +1,11 @@
 [package]
 name = "floz-macros"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Proc macro engine for floz — schema parsing and code generation"
 authors = ["Floz Team"]
 license = "MIT"
+repository = "https://github.com/floz-rs/floz-macros"
 
 [lib]
 proc-macro = true
@@ -13,4 +14,4 @@ proc-macro = true
 syn = { version = "2", features = ["full", "extra-traits"] }
 quote = "1"
 proc-macro2 = "1"
-floz-macros-core = { path = "../floz-macros-core", package = "floz-macros-core" }
+floz-macros-core = "0.1.0"
