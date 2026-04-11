@@ -15,6 +15,11 @@ pub fn schema(input: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
+pub fn model(attr: TokenStream, item: TokenStream) -> TokenStream {
+    floz_macros_core::model::expand_model(attr.into(), item.into()).into()
+}
+
+#[proc_macro_attribute]
 pub fn route(attr: TokenStream, item: TokenStream) -> TokenStream {
     floz_macros_core::route::expand_route(attr.into(), item.into()).into()
 }
