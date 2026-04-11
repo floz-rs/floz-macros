@@ -382,6 +382,8 @@ pub fn expand_route(attr: TokenStream, item: TokenStream) -> TokenStream {
                 &#resps_static_name,
                 #auth_expr,
                 #rate_expr,
+                ::core::option::Option::None,
+                false,
             )
         }
     };
