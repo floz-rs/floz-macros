@@ -2,16 +2,11 @@ extern crate proc_macro;
 
 use proc_macro::TokenStream;
 
-#[proc_macro]
-pub fn schema(input: TokenStream) -> TokenStream {
-    // Note: macro parsing is handled in floz_macros_core with syn::parse2 directly,
-    // so we convert input to proc_macro2::TokenStream and let the core handle parsing and generation
-    let input2: proc_macro2::TokenStream = input.into();
-    let schema_input = match syn::parse2::<floz_macros_core::ast::SchemaInput>(input2) {
-        Ok(s) => s,
-        Err(e) => return e.to_compile_error().into(),
-    };
-    floz_macros_core::codegen::generate(&schema_input).into()
+
+
+#[proc_macro_attribute]
+pub fn model(attr: TokenStream, item: TokenStream) -> TokenStream {
+    floz_macros_core::model::expand_model(attr.into(), item.into()).into()
 }
 
 #[proc_macro_attribute]
@@ -27,4 +22,18 @@ pub fn task(attr: TokenStream, item: TokenStream) -> TokenStream {
 #[proc_macro_attribute]
 pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
     floz_macros_core::route::expand_main(item.into()).into()
+}
+
+#[proc_macro_attribute]
+pub fn channel_gate(attr: TokenStream, item: TokenStream) -> TokenStream {
+    floz_macros_core::channel::expand_channel_gate(attr.into(), item.into()).into()
+}
+
+/// Embeds `vX.json` fingerprint snapshots directly into the application binary 
+/// at compile-time by discovering them recursively through your `src/app/**/` models.
+/// Creates a securely structured static dictionary for dynamic multi-tenant migrations
+/// to utilize during production SaaS initializations without filesystem access.
+#[proc_macro]
+pub fn embed_migrations(_input: TokenStream) -> TokenStream {
+    floz_macros_core::embed::expand_embed_migrations().into()
 }
