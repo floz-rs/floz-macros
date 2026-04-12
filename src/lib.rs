@@ -33,3 +33,12 @@ pub fn task(attr: TokenStream, item: TokenStream) -> TokenStream {
 pub fn main(_attr: TokenStream, item: TokenStream) -> TokenStream {
     floz_macros_core::route::expand_main(item.into()).into()
 }
+
+/// Embeds `vX.json` fingerprint snapshots directly into the application binary 
+/// at compile-time by discovering them recursively through your `src/app/**/` models.
+/// Creates a securely structured static dictionary for dynamic multi-tenant migrations
+/// to utilize during production SaaS initializations without filesystem access.
+#[proc_macro]
+pub fn embed_migrations(_input: TokenStream) -> TokenStream {
+    floz_macros_core::embed::expand_embed_migrations().into()
+}
